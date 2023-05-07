@@ -1,4 +1,5 @@
 import os
+from itertools import chain
 from transformers import BertTokenizerFast
 from datasets import load_dataset
 from transformers import BertConfig, BertForMaskedLM
@@ -9,21 +10,23 @@ from transformers import Trainer
 print('[INFO] Loading dataset...')
 
 files = [
-    "train_files/xaa",
-    "train_files/xab",
-    "train_files/xac",
-    "train_files/xad",
-    "train_files/xae",
-    "train_files/xaf",
-    "train_files/xag",
-    "train_files/xah",
-    "train_files/xai",
-    "train_files/xaj",
-    "train_files/xak",
-    "train_files/xal"
+    "dataset/train1.txt",
+    "dataset/train2.txt",
+    "dataset/train3.txt",
+    "dataset/train4.txt",
+    "dataset/train5.txt",
+    "dataset/train6.txt",
+    "dataset/train7.txt",
+    "dataset/train8.txt",
+    "dataset/train9.txt",
+    "dataset/train10.txt",
+    "dataset/train11.txt",
+    "dataset/train12.txt"
 ]
 
-d = load_dataset("text", data_files={'train': files, 'test': ['test.txt']})
+d = load_dataset("text", data_files={'train': files, 'test': ['dataset/test.txt']})
+
+print(d['train'])
 
 special_tokens = [
     "[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"
@@ -78,7 +81,7 @@ train_dataset.set_format("torch")
 test_dataset.set_format("torch")
 
 print(f'[INFO] Init model and trainer configs...')
-# initialize the model with the config
+
 model_config = BertConfig(
     vocab_size=vocab_size,
     max_position_embeddings=max_length,
@@ -101,8 +104,8 @@ training_args = TrainingArguments(
     per_device_train_batch_size=8,
     gradient_accumulation_steps=8,
     per_device_eval_batch_size=8,
-    logging_steps=2000,
-    save_steps=2000,
+    logging_steps=1000,
+    save_steps=1000,
     # load_best_model_at_end=True,
     # save_total_limit=3,
 )
