@@ -32,7 +32,7 @@ special_tokens = [
     "[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"
 ]
 
-vocab_size = 53
+vocab_size = 87
 max_length = 140
 truncate_longer_samples = False
 
