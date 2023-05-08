@@ -87,8 +87,8 @@ model_config = BertConfig(
     max_position_embeddings=max_length,
     num_hidden_layers=6,
     num_attention_heads=4,
-    hidden_size=128,
-    intermediate_size=256,
+    hidden_size=512,
+    intermediate_size=1024
 )
 model = BertForMaskedLM(config=model_config)
 
